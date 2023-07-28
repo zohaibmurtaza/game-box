@@ -15,6 +15,7 @@ export interface Game {
   metacritic: number;
   genre: Genre;
   rating_top: number;
+  description: string;
 }
 
 const useGames = (

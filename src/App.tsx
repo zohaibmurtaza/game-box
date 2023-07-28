@@ -10,6 +10,8 @@ import { Platform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 import Pagination from "./components/Pagination";
 import GameHeading from "./components/GameHeading";
+import { Route, Routes } from "react-router-dom";
+import Game from "./components/Game";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -51,28 +53,38 @@ function App() {
           </GridItem>
         </Show>
         <GridItem area="main">
-          <GameHeading gameQuery={gameQuery}/>
-          <HStack gap={5} marginBottom='10px'>
-            <PlatformSelector
-              selectedPlatform={gameQuery.platform}
-              onSelectedPlatform={(platform: Platform) =>
-                setGameQuery({ ...gameQuery, platform })
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <GameHeading gameQuery={gameQuery} />
+                  <HStack gap={5} marginBottom="10px">
+                    <PlatformSelector
+                      selectedPlatform={gameQuery.platform}
+                      onSelectedPlatform={(platform: Platform) =>
+                        setGameQuery({ ...gameQuery, platform })
+                      }
+                    />
+                    <SortSelector
+                      selectedOrder={gameQuery.sortOrder}
+                      onSelectOrder={(sortOrder) =>
+                        setGameQuery({ ...gameQuery, sortOrder })
+                      }
+                    />
+                  </HStack>
+                  <GameGrid gameQuery={gameQuery} />
+                  <Pagination
+                    onPageSelect={(n: number) =>
+                      setGameQuery({ ...gameQuery, page: n })
+                    }
+                    currentPage={gameQuery.page}
+                  />
+                </>
               }
             />
-            <SortSelector
-              selectedOrder={gameQuery.sortOrder}
-              onSelectOrder={(sortOrder) =>
-                setGameQuery({ ...gameQuery, sortOrder })
-              }
-            />
-          </HStack>
-          <GameGrid gameQuery={gameQuery} />
-          <Pagination
-            onPageSelect={(n: number) =>
-              setGameQuery({ ...gameQuery, page: n })
-            }
-            currentPage={gameQuery.page}
-          />
+            <Route path="/game/:gameId" element={<Game />} />
+          </Routes>
         </GridItem>
       </Grid>
     </>
