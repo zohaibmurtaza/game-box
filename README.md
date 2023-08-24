@@ -11,4 +11,4 @@ To run: "npm run dev"
 
 To Build: "npm run build"
 
-NOTE! Replace your API from RAWG with API in /src/services/app-client.ts. Otherwise, it won't be able to fetch data.
+NOTE! Replace XXXXXXXXXXXXXXXXXXXXXXXX with your API key from RAWG in /src/services/app-client.ts. Otherwise, it won't be able to fetch data.
