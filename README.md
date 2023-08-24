@@ -7,11 +7,8 @@ It uses:
 - React Hook Form + Zod Resolver.
 - Axios for API calls.
 
-##To run:
-"npm run dev"
+To run: "npm run dev"
 
-##To Build:
-"npm run build"
+To Build: "npm run build"
 
-##NOTE!
-Replace your API from RAWG with API in /src/services/app-client.ts. Otherwise, it won't be able to fetch data.
+NOTE! Replace your API from RAWG with API in /src/services/app-client.ts. Otherwise, it won't be able to fetch data.
